@@ -9,7 +9,7 @@ server_privatekey: "{{ lookup('file',  '{{ certdir }}/server-key.pem') }}"
 docker_port: 2376
 
 # Where to store certificates on the remote machine
-certificates_dir: "~/.docker"
+certificates_dir: "/home/{{ username }}/.docker"
 
 cert_filename: server-cert.pem
 privkey_filename: server-key.pem

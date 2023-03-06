@@ -12,4 +12,5 @@
       when: ansible_distribution == "Ubuntu" # task will run only on Ubuntu
   roles:
     # - system
-    - setup-secure-remote-docker-daemon
+    # - setup-secure-remote-docker-daemon
+    - docker-install
