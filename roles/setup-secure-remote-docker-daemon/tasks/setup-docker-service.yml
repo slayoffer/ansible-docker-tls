@@ -1,0 +1,18 @@
+- name: "Create Overrides directory for Docker"
+  file:
+    path: /etc/systemd/system/docker.service.d/
+    state: directory
+  become: true
+
+- name: "Push the Docker daemon config to Server"
+  template:
+    src: daemon_startup_options.conf
+    dest: /etc/systemd/system/docker.service.d/daemon_startup_options.conf
+  become: true
+
+- name: "Restart Docker Daemon service"
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: yes
+  become: true

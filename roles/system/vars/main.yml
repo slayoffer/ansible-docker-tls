@@ -1,0 +1,12 @@
+username: slayo
+password: "{{ vault_password }}"
+shell: /bin/bash
+ssh_public_key: ~/.ssh/id_rsa
+ssh_port: 22
+essential_packages:
+  - neofetch
+  - vim
+  - tmux
+  - htop
+extra_packages:
+  - cowsay

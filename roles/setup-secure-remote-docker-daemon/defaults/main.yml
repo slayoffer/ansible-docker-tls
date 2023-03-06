@@ -1,0 +1,16 @@
+# Required parameters
+certdir: "/home/administrator/certs"
+rootca_certificate: "{{ lookup('file', '{{ certdir }}/ca.pem') }}"
+server_certificate: "{{ lookup('file', '{{ certdir }}/server-cert.pem') }}"
+server_privatekey: "{{ lookup('file',  '{{ certdir }}/server-key.pem') }}"
+# END - Required parameters
+
+# Port to use for the Docker socket
+docker_port: 2376
+
+# Where to store certificates on the remote machine
+certificates_dir: "~/.docker"
+
+cert_filename: server-cert.pem
+privkey_filename: server-key.pem
+cacert_filename: ca.pem

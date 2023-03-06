@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: update repository index (Ubuntu)
+      tags: always
+      apt:
+        update_cache: yes
+        upgrade: yes
+      changed_when: false # This will never report 'changed' status
+      when: ansible_distribution == "Ubuntu" # task will run only on Ubuntu
+
+- hosts: docker-host
+  become: true
+  roles:
+    # - system
+    - setup-secure-remote-docker-daemon
+
+

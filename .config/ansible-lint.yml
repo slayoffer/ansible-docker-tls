@@ -1,0 +1,10 @@
+---
+warn_list:
+  - package-latest
+  - risky-file-permissions 
+  - yaml
+# skip_list:
+  # - name[missing]
+  # - fqcn
+  # - name[template]
+  # - no-handler

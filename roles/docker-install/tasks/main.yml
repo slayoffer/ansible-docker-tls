@@ -1,0 +1,38 @@
+- name: "Ensure this role is running on Ubuntu/Debian"
+  assert:
+    that: ansible_os_family == "Debian"
+    msg: "This role only works for Ubuntu/Debian. To install Docker on Mac use GUI installer"
+
+- name: "Install Docker"
+  become: true
+  block:
+    - name: "Install requirements"
+      apt:
+        name: "{{ pre_docker_packages }}"
+        update_cache: yes
+        state: latest
+
+    - name: "Add docker GPG key"
+      apt_key:
+        id: 0EBFCD88
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: "Add docker repo"
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu  {{ ansible_lsb.codename }}  stable"
+        state: present
+
+    - name: "Install Docker-CE"
+      apt:
+        name: "{{ docker_packages }}"
+        update_cache: yes
+        state: latest
+
+    - name: "Add current User to the `docker` group"
+      # This allows to run the `docker` commands without having to use `sudo`
+      user:
+        name: "administrator"
+        groups: docker
+        append: yes
+      become: true

@@ -1,0 +1,6 @@
+all: # Все серверы в нашем inventory, all - обязателен
+  children: # Дочерние группы для all
+    docker-host: # Группа хостов
+      hosts:
+        10.66.101.8:
+        DOCKERHOST-FQDN.com:
