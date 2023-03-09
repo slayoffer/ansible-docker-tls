@@ -1,4 +1,4 @@
-username: slayo
+username: localadmin
 password: wassup
 shell: /bin/bash
 ssh_public_key: ~/.ssh/id_rsa
