@@ -15,10 +15,11 @@ then
 fi
 
 cd .docker/
+
 echo "type in your certificate password (characters are not echoed)"
 read -p '>' -s PASSWORD
 
-echo "Type in the FQDN server name you’ll use to connect to the Docker server"
+echo "Type in the FQDN server name you'll use to connect to the Docker server"
 read -p '>' SERVER
 
 # 256bit AES (Advanced Encryption Standard) is the encryption cipher which is used for generating certificate authority (CA) with 4096-bit security.
@@ -35,9 +36,10 @@ openssl genrsa -out server-key.pem 4096
 # Generating a certificate signing request (CSR) for the the server key with the name of your host.
 openssl req -subj "/CN=$SERVER" -sha256 -new -key server-key.pem -out server.csr
 
-# CHANGE IPs here! Since TLS connections can be made through IP address as well as DNS name
+# CHANGE IPs here! THESE ARE IPS WHICH DOCKER CLIENTS CAN ACCESS THROUGH
+# Since TLS connections can be made through IP address as well as DNS name
 # the IP addresses need to be specified when creating the certificate
-echo subjectAltName = DNS:"$SERVER",IP:10.10.10.20,IP:127.0.0.1 >> extfile.cnf
+echo subjectAltName = DNS:"$SERVER",DNS:"server-docker-2",DNS:"server-docker-2.rubius.rubius.com",IP:192.168.10.175,IP:127.0.0.1 >> extfile.cnf
 
 # Set the Docker daemon key’s extended usage attributes to be used only for server authentication:
 echo extendedKeyUsage = serverAuth >> extfile.cnf
