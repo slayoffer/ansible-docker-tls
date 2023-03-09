@@ -39,7 +39,7 @@ openssl req -subj "/CN=$SERVER" -sha256 -new -key server-key.pem -out server.csr
 # CHANGE IPs here! THESE ARE IPS WHICH DOCKER CLIENTS CAN ACCESS THROUGH
 # Since TLS connections can be made through IP address as well as DNS name
 # the IP addresses need to be specified when creating the certificate
-echo subjectAltName = DNS:"$SERVER",DNS:"server-docker-2",DNS:"server-docker-2.rubius.rubius.com",IP:192.168.10.175,IP:127.0.0.1 >> extfile.cnf
+echo subjectAltName = DNS:"$SERVER",DNS:"server-docker-2",IP:192.168.10.175,IP:127.0.0.1 >> extfile.cnf
 
 # Set the Docker daemon key’s extended usage attributes to be used only for server authentication:
 echo extendedKeyUsage = serverAuth >> extfile.cnf
