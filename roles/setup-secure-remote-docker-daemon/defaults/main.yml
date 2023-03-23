@@ -1,5 +1,5 @@
 # Required parameters
-certdir: "/home/{{ username }}/certs"
+certdir: "/home/{{ username }}/.docker"
 rootca_certificate: "{{ lookup('file', '{{ certdir }}/ca.pem') }}"
 server_certificate: "{{ lookup('file', '{{ certdir }}/server-cert.pem') }}"
 server_privatekey: "{{ lookup('file',  '{{ certdir }}/server-key.pem') }}"
